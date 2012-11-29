@@ -1,8 +1,8 @@
-// Zepto/jQuery fadeLoop plugin for fade slide show effects by ali.md
 
 (function($,undefined){
+	// Zepto/jQuery fadeLoop plugin for fade slide show effects by ali.md
+	
 	var	ease = !!window.Zepto ? 'ease-out' : 'swing';
-
 	$.extend($.fn,{
 		fadeLoop :function(options){
 
@@ -13,17 +13,18 @@
 				startIndex : 0,
 				fadeFirstImage : true,
 				zIndex : -2,
-				zIndexAct : -2
+				zIndexAct : -2,
+				returnFocus:false
 			},options);
 
 			options.startIndex--;
 
 			var nextPic,
-				pics    =this,
-				indx    =options.startIndex,
-				plen    =this.length,
-				fadeIn  ={opacity:1},
-				fadeOut ={opacity:0},
+				pics	=this,
+				indx	=options.startIndex,
+				plen	=this.length,
+				fadeIn	={opacity:1},
+				fadeOut	={opacity:0},
 				zIndexChange = options.zIndex != options.zIndexAct
 
 			var nextPic = function(){
@@ -53,13 +54,10 @@
 })(window.Zepto || window.jQuery);
 
 
-
-
-
-// site js
-
+// Website js
 (function($,undefined){
 
+	// Background images animation
 	$('.background > div').fadeLoop({
 		delay : 0,
 		freez : 6000,
@@ -67,13 +65,13 @@
 		fadeFirstImage : false
 	});
 
+	// Menu hide/show effect
 	$('#hidebtn').click(function(){
 		$('.menu_wrap').toggleClass('close');
 		return false;
 	});
 
-//Contact Form
-
+	//Contact Form
 	var	emailPattern = /^[a-z0-9+_%.-]+@(?:[a-z0-9-]+\.)+[a-z]{2,6}$/i,
 		validateText = function (str,len){
 			return str.length >= len;
@@ -126,8 +124,17 @@
 		return !err;
 	});
 
-	// colorbox
-
-	$('.darkbox').colorbox({rel:'darkbox',opacity:0.7});
+	// Colorbox (jQuery only)
+	(function($){
+		$('.darkbox').colorbox({
+			rel			:'darkbox',
+			speed		:500,
+			opacity		:0.7,
+			scrolling	:false,
+			maxHeight	:window.innerHeight-50,
+			maxWidth	:window.innerWidth-50,
+			returnFocus	:false
+		});
+	})(window.jQuery);
 
 })(window.Zepto || window.jQuery);
